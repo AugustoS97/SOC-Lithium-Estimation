@@ -75,7 +75,10 @@ if __name__ == '__main__':
     #Se realiza un estudio de las curvas desde grado 1 hasta grado 10  polinomio
     degree_inf = 1
     degree_sup = 10
-    tools.plot_polinomical_reg (Voc, SOC, degree_inf, degree_sup, 'SOC_polynomical_'+str(degree_inf)+'_to_'+str(degree_sup-1), FILE_PATH + '/figures')
+    for degree in [2,3,4,5,6,7,8,9,10]:
+        coefs= tools.calc_polinomical_reg (Voc, SOC, degree, 'SOC_polynomical_degree_'+str(degree), FILE_PATH + '/figures')
+        tools.plot_my_curve(Voc, SOC, degree, coefs, 'SOC_regretion_degree_'+str(degree), FILE_PATH + '/figures')
+    #tools.plot_polinomical_reg (Voc, SOC, degree_inf, degree_sup, 'SOC_polynomical_'+str(degree_inf)+'_to_'+str(degree_sup-1), FILE_PATH + '/figures')
 
     '''Se representa la curva del grado seleccionado frente a la curva empirica'''
     #Se selecciona la curva de grado 4 por defecto
@@ -83,7 +86,7 @@ if __name__ == '__main__':
     if (len(sys.argv) > 2): #Puede indicarse otro grado al llamar al script
         degree = int(sys.argv[2])
 
-    coefs= tools.calc_polinomical_reg (Voc, SOC, degree, 'SOC_polynomical_degree_'+str(degree), FILE_PATH + '/figures')
+    #coefs= tools.calc_polinomical_reg (Voc, SOC, degree, 'SOC_polynomical_degree_'+str(degree), FILE_PATH + '/figures')
 
     '''Se representa una curva calculada en otro ensayo frente a un Voc'''
-    tools.plot_my_curve(Voc, SOC, degree, coefs, 'SOC_my_curve_degree_'+str(degree), FILE_PATH + '/figures')
+    #tools.plot_my_curve(Voc, SOC, degree, coefs, 'SOC_my_curve_degree_'+str(degree), FILE_PATH + '/figures')

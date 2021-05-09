@@ -50,7 +50,7 @@ def plot_SOC_data(Voc, SOC, PLOT_NAME, FILE_PATH): #Voc es el array de tensiones
     plt.xlabel("Voc")
     plt.grid()
     plt.savefig(FILE_PATH+'/'+PLOT_NAME, dpi = 300)
-    plt.show()
+    #plt.show()
 
 
 '''Calculo de la curva que mejor se asemeje  mediante regresión polinómica'''
@@ -68,7 +68,7 @@ def plot_polinomical_reg (Voc, SOC, degree_inf, degree_sup, PLOT_NAME, FILE_PATH
     plt.plot(Voc, SOC, 'o')
 
     # Pintar curvas de ajuste
-    Vocp = np.arange(3.18, 4.25, 0.01)
+    Vocp = np.arange(2.7, 4.1, 0.01)
     for degree, sol in sols.items():
       coefs, error, *_ = sol
       p = np.poly1d(coefs)
@@ -77,14 +77,14 @@ def plot_polinomical_reg (Voc, SOC, degree_inf, degree_sup, PLOT_NAME, FILE_PATH
       print(coefs)
       print('\n')
 
-    plt.title("SOC estimado según Voltaje Circuito Abierto. Regresión desde grado "+ str(degree_inf)+ " hasta " + str(degree_sup-1))
+    plt.title("SOC Estimado Según Voltaje Circuito Abierto. Regresión desde grado "+ str(degree_inf)+ " hasta " + str(degree_sup-1))
     plt.xticks(rotation=45,fontsize=9)
     plt.ylabel("SOC")
     plt.xlabel("Voc")
     plt.grid()
     plt.legend()
     plt.savefig(FILE_PATH+'/'+PLOT_NAME, dpi = 300)
-    plt.show()
+    #plt.show()
 
 '''Se representa la curva del grado seleccionado frente a la curva empirica'''
 def calc_polinomical_reg (Voc, SOC, degree, PLOT_NAME, FILE_PATH):
@@ -98,7 +98,7 @@ def calc_polinomical_reg (Voc, SOC, degree, PLOT_NAME, FILE_PATH):
     print(coefs)
     print("")
 
-    Voc_test = np.arange(3.18,4.25,0.01) #Se genera un array de Voc
+    Voc_test = np.arange(2.7,4.2,0.01) #Se genera un array de Voc
 
     #Se calcula el SOC estimado en función del ajuste polinomial. Ejemplo para grado 5
     #SOC_pr = coefs[5] + Voc_test*coefs[4] + Voc_test**2* coefs[3]  + Voc_test**3 * coefs[2] +  Voc_test**4* coefs[1] + Voc_test **5 * coefs[0]
@@ -116,7 +116,7 @@ def calc_polinomical_reg (Voc, SOC, degree, PLOT_NAME, FILE_PATH):
     W  = 15
     H = 12
     fig = plt.figure( figsize=(W,H))
-    plt.title("SOC estimado según Voltaje Circuito Abierto ")
+    plt.title("SOC Estimado Según Voltaje Circuito Abierto. Curva de Grado " + str(degree))
     plt.xticks(rotation=45,fontsize=9)
     plt.ylabel("SOC")
     plt.xlabel("Voc")
@@ -125,7 +125,7 @@ def calc_polinomical_reg (Voc, SOC, degree, PLOT_NAME, FILE_PATH):
     plt.grid()
     plt.legend()
     plt.savefig(FILE_PATH+'/'+PLOT_NAME, dpi = 300)
-    plt.show()
+    #plt.show()
     return (coefs) #Devuelve los coeficientes de la funcion predicha
 
 '''Se representa una curva arbitraria dada por sus coeficientes frente a la curva SOC empirica dada'''
@@ -153,7 +153,7 @@ def plot_my_curve(Voc, SOC, degree, coefs, PLOT_NAME, FILE_PATH):
     W  = 15
     H = 12
     fig = plt.figure( figsize=(W,H))
-    plt.title("SOC estimado según Voltaje Circuito Abierto ")
+    plt.title("SOC Estimado Según Voltaje Circuito Abierto. Curva de Grado " + str(degree))
     plt.xticks(rotation=45,fontsize=9)
     plt.ylabel("SOC")
     plt.xlabel("Voc")
@@ -163,4 +163,4 @@ def plot_my_curve(Voc, SOC, degree, coefs, PLOT_NAME, FILE_PATH):
     plt.grid()
     plt.legend()
     plt.savefig(FILE_PATH+'/'+PLOT_NAME, dpi = 300)
-    plt.show()
+    #plt.show()
