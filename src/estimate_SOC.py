@@ -72,13 +72,14 @@ if __name__ == '__main__':
     tools.plot_SOC_data(Voc, SOC, 'SOC_empirical', FILE_PATH + '/figures')
 
     '''Calculo de la curva que mejor se asemeje  mediante regresión polinómica'''
-    #Se realiza un estudio de las curvas desde grado 1 hasta grado 10  polinomio
-    degree_inf = 1
-    degree_sup = 10
-    for degree in [2,3,4,5,6,7,8,9,10]:
+    #Se realiza un estudio de las curvas desde grado 1 hasta grado 9  polinomio
+    degree_inf = 2
+    degree_sup = 9
+    tools.plot_polinomical_reg (Voc, SOC, degree_inf, degree_sup, 'SOC_polynomical_'+str(degree_inf)+'_to_'+str(degree_sup-1), FILE_PATH + '/figures')
+    for degree in range (degree_inf, degree_sup):
         coefs= tools.calc_polinomical_reg (Voc, SOC, degree, 'SOC_polynomical_degree_'+str(degree), FILE_PATH + '/figures')
         tools.plot_my_curve(Voc, SOC, degree, coefs, 'SOC_regretion_degree_'+str(degree), FILE_PATH + '/figures')
-    #tools.plot_polinomical_reg (Voc, SOC, degree_inf, degree_sup, 'SOC_polynomical_'+str(degree_inf)+'_to_'+str(degree_sup-1), FILE_PATH + '/figures')
+
 
     '''Se representa la curva del grado seleccionado frente a la curva empirica'''
     #Se selecciona la curva de grado 4 por defecto

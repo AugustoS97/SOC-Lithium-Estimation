@@ -65,14 +65,15 @@ def plot_polinomical_reg (Voc, SOC, degree_inf, degree_sup, PLOT_NAME, FILE_PATH
     W  = 15
     H = 12
     fig = plt.figure( figsize=(W,H))
-    plt.plot(Voc, SOC, 'o')
+    plt.plot(Voc, SOC, '-', label = "SOC empirica")
 
     # Pintar curvas de ajuste
-    Vocp = np.arange(2.7, 4.1, 0.01)
+    Vocp = np.arange(2.7, 4.15, 0.01)
     for degree, sol in sols.items():
       coefs, error, *_ = sol
       p = np.poly1d(coefs)
-      plt.plot(Vocp, p(Vocp), "-", label="Gr: %s. Error %.3f" % (degree, error) )
+      #plt.plot(Vocp, p(Vocp), "--", label="Gr: %s. Error %.3f" % (degree, error) )
+      plt.plot(Vocp, p(Vocp), "--", label="Regresión. Gr: %s" % (degree) )
       print('Coeficientes para grado ' + str(degree) + ' :\n')
       print(coefs)
       print('\n')
