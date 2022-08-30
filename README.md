@@ -1,5 +1,5 @@
 # SOC_estimation
-Herramienta para analizar los datos de descarga de una batería obtenidos con una Carga Electrónica Rigol
+Herramienta para analizar los datos de descarga de una batería Samsung INR21700 o similar, de ion-Litio, obtenidos con una Carga Electrónica Rigol de tipo DL3021.
 
 ## Formas de llamar al Script
 
